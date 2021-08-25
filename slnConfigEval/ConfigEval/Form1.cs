@@ -19,6 +19,17 @@ namespace ConfigEval
             InitializeComponent();
         }
 
+        private void BorrarCampos(Control control)
+        {
+            foreach (var txt in control.Controls)
+            {
+                if (txt is TextBox)
+                {
+                    ((TextBox)txt).Clear();
+                }
+            }
+        }
+
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             try
@@ -26,10 +37,10 @@ namespace ConfigEval
                 string sql = "insert into Employees values('" + txtEmployeeId.Text + "', '" + txtLastName.Text + "', '" + txtFirstName.Text + "', '" + txtDateOfBirth.Text + "')";
                 manejador.Ejecutar(sql);
                 MessageBox.Show("Empleado agregado con éxito");
+                BorrarCampos(this);
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show("Error" + ex);
             }
         }
