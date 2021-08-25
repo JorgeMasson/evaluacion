@@ -126,6 +126,7 @@ namespace ConfigEval
             this.btnCreateXmlFile.TabIndex = 11;
             this.btnCreateXmlFile.Text = "Create XML File";
             this.btnCreateXmlFile.UseVisualStyleBackColor = true;
+            this.btnCreateXmlFile.Click += new System.EventHandler(this.btnCreateXmlFile_Click);
             // 
             // txtDateOfBirth
             // 

@@ -44,5 +44,10 @@ namespace ConfigEval
                 MessageBox.Show("Error" + ex);
             }
         }
+
+        private void btnCreateXmlFile_Click(object sender, EventArgs e)
+        {
+            manejador.GeneraXML();
+        }
     }
 }
