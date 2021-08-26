@@ -54,10 +54,17 @@ namespace ConfigEval
             for (int i = 0; i < numeroRows; i++)
             {
                 row = dt.Rows[i];
-                lines[i] = row["EmployeeID"].ToString() + 
-                           row["LastName"].ToString() +
-                           row["FirstName"].ToString() +
-                           row["DateOfBirth"].ToString();
+                string id = row["EmployeeID"].ToString();
+                string dob = row["DateOfBirth"].ToString();
+                if (id.Length < 8 | dob.Length < 8)
+                {
+                    id = id.PadLeft(8, '0');
+                    dob = dob.PadLeft(8, '0');
+                }
+                lines[i] = "[" + id + "]" + "|" +
+                           "[" + row["LastName"].ToString() + "]" + "|" +
+                           "[" + row["FirstName"].ToString() + "]" + "|" +
+                           "[" + dob + "]";
             }
 
             for (int i = 0; i < numeroRows; i++)
