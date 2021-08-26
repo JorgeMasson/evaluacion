@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -34,6 +35,38 @@ namespace ConfigEval
             MySqlCommand cmd = new MySqlCommand(sql, conexion);
             cmd.ExecuteNonQuery();
             CerrarConexion(conexion);
+        }
+
+        //Crea el archivo txt
+        public void GeneraTXT()
+        {
+            MySqlConnection conexion = ConectarBD();
+            string sql = "select * from Employees";
+            MySqlDataAdapter da = new MySqlDataAdapter(sql, conexion);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            int numeroRows = dt.Rows.Count;
+            DataRow row;
+
+            string[] lines = new string[numeroRows];
+            TextWriter escribe = new StreamWriter("test.txt");
+
+            for (int i = 0; i < numeroRows; i++)
+            {
+                row = dt.Rows[i];
+                lines[i] = row["EmployeeID"].ToString() + 
+                           row["LastName"].ToString() +
+                           row["FirstName"].ToString() +
+                           row["DateOfBirth"].ToString();
+            }
+
+            for (int i = 0; i < numeroRows; i++)
+            {
+                escribe.WriteLine(lines[i]);
+            }
+
+            escribe.Close();
+
         }
 
         //Crea el archivo xml

@@ -48,8 +48,30 @@ namespace ConfigEval
 
         private void btnCreateXmlFile_Click(object sender, EventArgs e)
         {
-            manejador.GeneraXML();
-            System.Diagnostics.Process.Start(@"..\Debug\test.xml");
+            try
+            {
+                manejador.GeneraXML();
+                System.Diagnostics.Process.Start(@"..\Debug\test.xml");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error" + ex);
+            }
+        }
+
+        private void btnCreateTextFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                manejador.GeneraTXT();
+                System.Diagnostics.Process.Start(@"..\Debug\test.txt");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error" + ex);
+            }
         }
     }
 }

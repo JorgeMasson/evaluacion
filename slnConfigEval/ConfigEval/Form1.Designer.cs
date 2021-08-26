@@ -117,6 +117,7 @@ namespace ConfigEval
             this.btnCreateTextFile.TabIndex = 10;
             this.btnCreateTextFile.Text = "Create Text File";
             this.btnCreateTextFile.UseVisualStyleBackColor = true;
+            this.btnCreateTextFile.Click += new System.EventHandler(this.btnCreateTextFile_Click);
             // 
             // btnCreateXmlFile
             // 
