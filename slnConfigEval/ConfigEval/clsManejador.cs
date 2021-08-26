@@ -56,8 +56,18 @@ namespace ConfigEval
             for (int i = 0; i < numeroRows; i++)
             {
                 row = dt.Rows[i];
+                string id = row["EmployeeID"].ToString();
+                string dob = row["DateOfBirth"].ToString();
+                if (id.Length < 8 | dob.Length < 8)
+                {
+                    id = id.PadLeft(8, '0');
+                    dob = dob.PadLeft(8, '0');
+                }
+                string primerDiagonal = dob.Insert(2, "/");
+                string formatoFecha = primerDiagonal.Insert(5, "/");
+
                 xmlWritter.WriteStartElement("Employee");
-                xmlWritter.WriteAttributeString("ID", row["EmployeeID"].ToString());
+                xmlWritter.WriteAttributeString("ID", id);
                 xmlWritter.WriteStartElement("LastName");
                 xmlWritter.WriteString(row["LastName"].ToString());
                 xmlWritter.WriteEndElement();
@@ -65,7 +75,7 @@ namespace ConfigEval
                 xmlWritter.WriteString(row["FirstName"].ToString());
                 xmlWritter.WriteEndElement();
                 xmlWritter.WriteStartElement("DateOfBirth");
-                xmlWritter.WriteString(row["DateOfBirth"].ToString());
+                xmlWritter.WriteString(formatoFecha);
                 xmlWritter.WriteEndElement();
                 xmlWritter.WriteEndElement();
             }

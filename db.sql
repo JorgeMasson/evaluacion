@@ -9,6 +9,5 @@ create table Employees(
     DateOfBirth int(8) unsigned zerofill
 );
 
-select * from Employees;
 
 

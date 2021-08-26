@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -48,6 +49,7 @@ namespace ConfigEval
         private void btnCreateXmlFile_Click(object sender, EventArgs e)
         {
             manejador.GeneraXML();
+            System.Diagnostics.Process.Start(@"..\Debug\test.xml");
         }
     }
 }
